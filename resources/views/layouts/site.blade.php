@@ -97,12 +97,7 @@
 <script src="{{ asset('js/waypoints.min.js') }}"></script> <!-- waypoint -->
 <script src="{{ asset('js/active.js') }}"></script> <!-- active js -->
 <script src="{{ asset('js/chatScript.js') }}" type="text/javascript"></script> <!--End of Tawk.to Script-->
-<script type="text/javascript">
-    function changeMe(sel)
-    {
-        sel.style.color = "#fff";
-    }
-</script>
+
 @yield('page-scripts')
 
 </body>

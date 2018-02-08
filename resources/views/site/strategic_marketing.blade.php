@@ -104,9 +104,6 @@
             </div>
         </div>
     </div>
-
-
-
     <div class="aboutServiceArea secPdng" style="background-color:rgb(255, 206, 66); ">
         <div class="container animated">
             <div class="row">

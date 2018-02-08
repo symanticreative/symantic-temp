@@ -42,6 +42,7 @@
         </div>
         <div class="aboutImg">
             <img src="img/about01.jpg" alt="" style="width:100%;height:auto">
+            <img src="{{$test}}" />
         </div>
     </div>
 

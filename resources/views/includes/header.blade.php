@@ -4,7 +4,33 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                    @guest
+                    @else
+                            <ul class="topInfo">
+
+                                <li class="">
+                                    <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                                        <i class="fa fa-user"></i> {{ Auth::user()->name }}
+                                    </a>
+                                    <ul class="dropdown-menu pull-right" style="    top: 45px;
+    right: 13px;">
+                                    <li>
+                                        <a href="{{ route('logout') }}" style="line-height:15px";
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                                </li>
+                            </ul>
+                            @endguest
                     <ul class="topInfo">
+
                         <li class="call"><a href="tel:+27838223872"><i class="icofont icofont-ui-call"></i>+27 (0)83 822 3872</a></li>
                         <li class="email"><a href="mailto:info@symantic.co.za"><i class="icofont icofont-ui-v-card"></i>info@symantic.co.za</a></li>
                         <li class="clientAreaLi"><span><i class="icofont icofont-user-alt-3"></i>Request a Callback</span></li>
@@ -41,7 +67,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 col-sm-3 col-xs-9">
-                    <a href="index-1.html" class="logo"><img src="img/logo.png" alt=""></a>
+                    <a href="{{ route('home') }}" class="logo"><img src="img/logo.png" alt=""></a>
                 </div>
                 <div class="col-md-10 menuCol col-sm-9 col-xs-1">
                     <div class="navbar-header">
@@ -52,9 +78,11 @@
                     </div>
                     <nav id="navbar" class="collapse navbar-collapse">
                         <ul id="nav">
-                            <li {{ (Request::is('/') ? 'class=current-menu-item' : '') }} ><a href="{{ route('index') }}">Home</a>
+                            <li {{ (Request::is('/') ? 'class=current-menu-item' : '') }} ><a href="{{ route('home') }}">Home</a>
                             </li>
-                            <li {{ (Request::is('about') ? 'class=current-menu-item' : '') }}><a href="{{ route('about') }}">About</a>
+                            {{--<li {{ (Request::is('about') ? 'class=current-menu-item' : '') }}><a href="{{ route('about') }}">About</a>--}}
+                            {{--</li>--}}
+                            <li {{ (Request::is('works') ? 'class=current-menu-item' : '') }}><a href="{{ route('works') }}">Our Works</a>
                             </li>
                             <li class="#"><a href="#" >Services</a>
                                 <ul class="sub-menu">

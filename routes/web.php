@@ -1,6 +1,6 @@
 <?php
 
-Route::get('','SiteController@index')->name('index');
+Route::get('','SiteController@index')->name('home');
 Route::get('about','SiteController@about')->name('about');
 
 Route::get('business-development-solutions','SiteController@sbds')->name('sbds');
@@ -14,7 +14,8 @@ Route::prefix('services')->group(function(){
     Route::get('tools-and-integrations','ServiceController@tools_integrations')->name('tools_integrations');
 
 });
+Route::get('our-work','SiteController@works')->name('works');
 
-//Auth::routes();
-//
-//Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/admin', 'AdminController@index')->name('admin');
