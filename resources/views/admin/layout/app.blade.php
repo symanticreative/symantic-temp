@@ -1,79 +1,93 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{--<!-- Twitter -->--}}
+    {{--<meta name="twitter:site" content="@themepixels">--}}
+    {{--<meta name="twitter:creator" content="@themepixels">--}}
+    {{--<meta name="twitter:card" content="summary_large_image">--}}
+    {{--<meta name="twitter:title" content="Bracket">--}}
+    {{--<meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">--}}
+    {{--<meta name="twitter:image" content="http://themepixels.me/bracket/img/bracket-social.png">--}}
+
+    {{--<!-- Facebook -->--}}
+    {{--<meta property="og:url" content="http://themepixels.me/bracket">--}}
+    {{--<meta property="og:title" content="Bracket">--}}
+    {{--<meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">--}}
+
+    {{--<meta property="og:image" content="http://themepixels.me/bracket/img/bracket-social.png">--}}
+    {{--<meta property="og:image:secure_url" content="http://themepixels.me/bracket/img/bracket-social.png">--}}
+    {{--<meta property="og:image:type" content="image/png">--}}
+    {{--<meta property="og:image:width" content="1200">--}}
+    {{--<meta property="og:image:height" content="600">--}}
+
+    <!-- Meta -->
+    <meta name="description" content="Symantic Website Dashboard">
+    <meta name="author" content="Symantic">
+
     <title>{{ config('app.name', 'Symantic') }} - @yield('title')</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- vendor css -->
+    <link href="{{ asset('admin/lib/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/lib/Ionicons/css/ionicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/lib/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/lib/jquery-switchbutton/jquery.switchButton.css') }}" rel="stylesheet">
+
+    <!-- Bracket CSS -->
+    <link rel="stylesheet" href="{{ asset('admin/css/bracket.min.css') }}">
 </head>
+
 <body>
-    <div id="app">composer
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+    @include('admin.includes.left_sidebar')
+    @include('admin.includes.header')
+    @include('admin.includes.right_sidebar')
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+    <!-- ########## START: MAIN PANEL ########## -->
+    <div class="br-mainpanel">
+        <div class="br-pageheader pd-y-15 pd-l-20">
+            <nav class="breadcrumb pd-0 mg-0 tx-12">
+                <a class="breadcrumb-item" href="{{route('dashboard.index')}}">HOME</a>
+                    @for($i = 2; $i <= count(Request::segments()); $i++)
+                    <span class="breadcrumb-item">
+                            <a href="{{ URL::to( implode( '/', array_slice(Request::segments(), 0 ,$i, true)))}}">
+                                {{strtoupper(Request::segment($i))}}
+                            </a>
+                    </span>
+                    @endfor
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+            </nav>
+        </div><!-- br-pageheader -->
+        <div class="pd-x-20 pd-sm-x-30 pd-t-20 pd-sm-t-30">
+            @yield('page_name')
+        </div>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+        <div class="br-pagebody">
 
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+          @yield('content')
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        </div><!-- br-pagebody -->
 
-        @yield('content')
-    </div>
+    </div><!-- br-mainpanel -->
+    <!-- ########## END: MAIN PANEL ########## -->
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="{{ asset('admin/lib/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('admin/lib/popper.js/popper.js') }}"></script>
+    <script src="{{ asset('admin/lib/bootstrap/bootstrap.js') }}"></script>
+    <script src="{{ asset('admin/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js') }}"></script>
+    <script src="{{ asset('admin/lib/moment/moment.js') }}"></script>
+    <script src="{{ asset('admin/lib/jquery-ui/jquery-ui.js') }}"></script>
+    <script src="{{ asset('admin/lib/jquery-switchbutton/jquery.switchButton.js') }}"></script>
+    <script src="{{ asset('admin/lib/peity/jquery.peity.js') }}"></script>
+
+    <script src="{{ asset('admin/js/bracket.js') }}"></script>
 </body>
 </html>

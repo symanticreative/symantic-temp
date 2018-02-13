@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -36,6 +38,10 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if (app()->bound('sentry') && $this->shouldReport($exception)) {
+            app('sentry')->captureException($exception);
+        }
+
         parent::report($exception);
     }
 
@@ -48,6 +54,19 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+
+
+        if($this->isHttpException($exception) && $request->is('dashboard/*')){
+            return response()->view("errors.backend.404");
+        }
+
+
+        if ($this->shouldReport($exception) && !$this->isHttpException($exception) && !config('app.debug')) {
+            $exception = new HttpException(500, 'Whoops!');
+        }
+
+
         return parent::render($request, $exception);
     }
 }

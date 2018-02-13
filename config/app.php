@@ -169,6 +169,7 @@ return [
          */
 
         JD\Cloudder\CloudderServiceProvider::class,
+        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
+        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
 
     ],
 

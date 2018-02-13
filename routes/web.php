@@ -1,11 +1,18 @@
 <?php
-
+//Home Page
 Route::get('','SiteController@index')->name('home');
+
+//About Us Page
 Route::get('about','SiteController@about')->name('about');
 
-Route::get('business-development-solutions','SiteController@sbds')->name('sbds');
-Route::get('launch-it','SiteController@launch_it')->name('launch_it');
-Route::get('app-d','SiteController@app_d')->name('app_d');
+//Packages
+Route::prefix('packages')->group(function(){
+    Route::get('business-development-solutions','SiteController@sbds')->name('sbds');
+    Route::get('launch-it','SiteController@launch_it')->name('launch_it');
+    Route::get('app-d','SiteController@app_d')->name('app_d');
+});
+
+//Services
 Route::prefix('services')->group(function(){
     Route::get('strategic-marketing','ServiceController@strategic_marketing')->name('strategic_marketing');
     Route::get('branding-and-design','ServiceController@branding_design')->name('branding_design');
@@ -14,8 +21,15 @@ Route::prefix('services')->group(function(){
     Route::get('tools-and-integrations','ServiceController@tools_integrations')->name('tools_integrations');
 
 });
+
+//Portfolio
 Route::get('our-work','SiteController@works')->name('works');
+
+//Route::prefix('news')
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('admin');
+Route::prefix('dashboard')->group(function(){
+    Route::get('', 'DashboardController@index')->name('dashboard.index');
+    Route::resource('blog','BackendBlogController');
+});
