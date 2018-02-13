@@ -21,7 +21,7 @@ class SiteController extends Controller
 
     public function works(){
 
-        $test = Cloudder::secureShow('Adobe_Spark_3_zfrfx6',['crop'=> 'scale','width' => 'iw','height'=>'ih','format' => 'jpg' ]);
+        $test = Cloudder::secureShow('Adobe_Spark_3_zfrfx6',['crop'=> 'crop','height'=>'100','format' => 'jpg' ]);
         return view('site.works',compact('test'));
     }
 }

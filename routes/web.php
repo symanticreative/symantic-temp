@@ -18,4 +18,4 @@ Route::get('our-work','SiteController@works')->name('works');
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/dashboard', 'DashboardController@index')->name('admin');

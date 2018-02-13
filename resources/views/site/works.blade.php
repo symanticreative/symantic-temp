@@ -58,52 +58,29 @@
 
     <!-- ======= 2.02 Page About Area ====== -->
 
-    <div class="aboutArea animated">
+    <div class="aboutArea secPdng animated">
         <div class="container">
             <div class="row">
-                <div class="portfolioFilter">
-
-                    <a href="#" data-filter="*" class="current">All Categories</a>
-                    <a href="#" data-filter=".people">People</a>
-                    <a href="#" data-filter=".places">Places</a>
-                    <a href="#" data-filter=".food">Food</a>
-                    <a href="#" data-filter=".objects">Objects</a>
-
+                <div class="col-md-8">
+                    <img src="{{ $test }}" alt="">
                 </div>
-                <div class="portfolioContainer">
-
-                    <div class="objects">
-                        <img src="{{ $test }}" alt="image">
-                    </div>
-
-                    <div class="people places">
-                        <img src="images/surf.jpg" alt="image">
-                    </div>
-
-                    <div class="food">
-                        <img src="images/burger.jpg" alt="image">
-                    </div>
-
-                    <div class="people places">
-                        <img src="images/subway.jpg" alt="image">
-                    </div>
-
-                    <div class="places objects">
-                        <img src="images/trees.jpg" alt="image">
-                    </div>
-
-                    <div class="people food objects">
-                        <img src="images/coffee.jpg" alt="image">
-                    </div>
-
-                    <div class="food objects">
-                        <img src="images/wine.jpg" alt="image">
-                    </div>
-
-                    <div class="food">
-                        <img src="images/salad.jpg" alt="image">
-                    </div>
-
+                <div class="col-md-4">
+                    <img src="{{ $test }}" alt="">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ $test }}" alt="">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ $test }}" alt="">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ $test }}" alt="">
+                </div>
+                <div class="col-md-4">
+                    <img src="{{ $test }}" alt="">
+                </div>
+                <div class="col-md-8">
+                    <img src="{{ $test }}" alt="">
                 </div>
             </div>
         </div>
@@ -114,14 +91,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="sectionTitle" style="margin-bottom:0;">
-                            <div class="h2">We are committed to providing <br>great services and products to our
-                                customers.
+                            <div class="h2 ctaBtn text-left">Like what you see? Why not work with us? <a href="#" class="ctaBtn Btn btnOne pull-right">Contact Us</a>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    @include('includes.cta.newsletter')
 
 @endsection
